@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-1">
+        <button (click)="onNoClick()" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="col-7 justify-content-center">
+        <div class="row">
+            <div class="col-2">
+                <label for="">SÓLO EL MÍO</label>
+                <mat-slide-toggle color="primary" (change)="filterData.isAuthor = !filterData.isAuthor; changedFilter('autor');" [checked]="filterData.isAuthor" [disabled]="disabled"></mat-slide-toggle>
+            </div>
+            <div class="col-4">
+                <mat-form-field>
+                    <mat-label>WEBS</mat-label>
+                    <mat-select (selectionChange)="changedFilter('site')" [(value)]="filterData.site">
+                        <mat-option value="todos">TODOS</mat-option>
+                        <mat-option value="computerhoy">computerhoy</mat-option>
+                        <mat-option value="autobild">autobild</mat-option>
+                        <mat-option value="businessinsider">businessinsider</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4">
+                <mat-form-field>
+                    <mat-label>TIPOS</mat-label>
+                    <mat-select (selectionChange)="changedFilter('type')" [(value)]="filterData.type">
+                        <mat-option value="todos">TODOS</mat-option>
+                        <mat-option value="video">video</mat-option>
+                        <mat-option value="imagen">imagen</mat-option>
+                        <mat-option value="galeria">galería</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Introduce tu búsqueda" aria-label="Search">
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-align-left"></span>
+            </button>
+        </form>
+    </div>
+</div>

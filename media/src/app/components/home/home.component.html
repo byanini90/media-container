@@ -1,0 +1,11 @@
+<mat-form-field>
+    <input matInput placeholder="Escribe aquí el titular de tu artículo">
+</mat-form-field>
+
+<div *ngIf="!mediaSelected">
+    <button mat-raised-button (click)="openMediaModel()">Pick one</button>
+</div>
+
+<div *ngIf="mediaSelected">
+    <app-media [mediaSelected]="true" [media]="mediaSelected"></app-media>
+</div>
