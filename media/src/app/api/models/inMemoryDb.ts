@@ -5,7 +5,8 @@ import * as faker from 'faker/locale/es';
 export class InMemoryDb implements InMemoryDbService {
 
     createDb() {
-        const medias: MediaData[] = this.manyMedias(10);
+        const medias: MediaData[] = this.manyMedias(50);
+        console.log(medias);
         return { medias };
     }
 
