@@ -1,5 +1,5 @@
 <div class="card bg-dark text-white" (mouseover)="show = true" (mouseleave)="show = false">
-    <img *ngIf="media.type == 'image' || media.type == 'galeria'" [src]="media.url" [class.style=] class="card-img" alt="...">
+    <img *ngIf="media.type == 'image' || media.type == 'galeria'" [src]="media.url" class="card-img" alt="...">
     <img *ngIf="media.type == 'video'" [src]="media.thumbnail.url" class="card-img" alt="...">
     <div class="card-img-overlay" *ngIf="!mediaSelected && show">
         <h5 class="card-title">{{media.name}}</h5>
