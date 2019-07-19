@@ -31,6 +31,11 @@ export class MediaService {
     this.getMedias({ page });
   }
 
+  getFilter(filterData: FilterData) {
+    this.mediaStore.setLoading(true);
+    this.getFilterMedias(filterData);
+  }
+
   @transaction()
   private updateMedias(res) {
     const nextPage = res.currentPage + 1;
@@ -56,8 +61,30 @@ export class MediaService {
     });
   }
 
+  getFilterData(filterdata: FilterData, params = { page: 1 }) {
+    this.mediaStore.remove();
+    const perPage = 10;
+    const offset = (params.page - 1) * perPage;
+    this.filter(filterdata).subscribe(res => {
+      const paginatedItems = res.slice(offset, offset + perPage);
+      const hasMore = offset + perPage !== res.length;
+      this.updateMedias( {
+        currentPage: params.page,
+        hasMore,
+        perPage: perPage,
+        total: res.length,
+        lastPage: Math.ceil(res.length / perPage),
+        data: paginatedItems
+      });
+    });
+  }
+
   getMedias(params?) {
     return this.getData(params);
+  }
+
+  getFilterMedias(filterdata: FilterData) {
+    return this.getFilterData(filterdata);
   }
 
 }
