@@ -5,7 +5,7 @@ import * as faker from 'faker/locale/es';
 export class InMemoryDb implements InMemoryDbService {
 
     createDb() {
-        const medias: MediaData[] = this.manyMedias(10);
+        const medias: MediaData[] = this.manyMedias(20);
         return { medias };
     }
 
@@ -30,7 +30,7 @@ export class InMemoryDb implements InMemoryDbService {
                 url: faker.random.image()
             },
             url: faker.random.image(),
-            license: faker.lorem.word() + '.es',
+            license: faker.random.arrayElement(['autobild.es', 'computerhoy.com', 'businessinsider.net']),
             site: faker.random.arrayElement(['autobild', 'computerhoy', 'businessinsider'])
         };
     }

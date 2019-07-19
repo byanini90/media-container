@@ -1,14 +1,16 @@
 <div class="container">
     <app-filter (closeModal)="closeModal()" (filter)="filter($event)"></app-filter>
-    <div *ngIf="!isLoading && medias && medias.length > 0" class="card-columns m-5">
-        <app-media [media]="media" *ngFor="let media of medias"></app-media>
+    <div class="card-columns m-5">
+        <app-infinite-scroll (scrolled)="onScroll()">
+            <app-media [media]="media" *ngFor="let media of medias$ | async"></app-media>
+            <div *ngIf="isLoading$ | async" class="text-center m-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </app-infinite-scroll>
     </div>
-    <div *ngIf="!isLoading && (!medias || medias.length <= 0)" class="alert alert-info m-5" role="alert">
+    <div *ngIf="countMedias === 0" class="alert alert-info m-5" role="alert">
         0 ELEMENTOS ENCONTRADOS
-    </div>
-    <div *ngIf="isLoading" class="text-center m-5">
-        <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
     </div>
 </div>

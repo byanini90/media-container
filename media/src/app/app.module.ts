@@ -3,19 +3,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { MatFormFieldModule, MatDialogModule, MatInputModule, MatButtonModule, MatSlideToggleModule, MatSelectModule } from '@angular/material';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HttpClientModule } from '@angular/common/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
+//Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { MediasComponent } from './components/medias/medias.component';
 import { FilterComponent } from './components/shared/filter/filter.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { MediaComponent } from './components/media/media.component';
 
+//ROUTES
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
-import { MediaComponent } from './components/media/media.component';
+
+//Services
 import { MediaService } from './api/services/media.service';
-import { InMemoryDb } from './api/services/InMemoryDb';
-import { HttpClientModule } from '@angular/common/http';
+import { InMemoryDb } from './api/models/inMemoryDb';
+import { InfiniteScrollComponent } from './components/infinite-scroll/infinite-scroll.component';
+import { MediasQuery } from './api/models/media.query';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     MediasComponent,
     FilterComponent,
     NavbarComponent,
-    MediaComponent
+    MediaComponent,
+    InfiniteScrollComponent
   ],
   entryComponents: [
     MediasComponent
@@ -32,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    InfiniteScrollModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -44,6 +54,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     InMemoryDb,
+    MediasQuery,
     MediaService
   ],
   bootstrap: [AppComponent]
