@@ -27,9 +27,6 @@ export class MediasComponent implements OnInit {
 
   ngOnInit() {
     this.fetchMedias();
-    this.mediaQuery.selectAll().subscribe(res => {
-      console.log(res);
-    });
     this.medias$ = this.mediaQuery.selectAll();
     this.isLoading$ = this.mediaQuery.selectLoading();
   }
